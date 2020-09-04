@@ -15,4 +15,3 @@ Install dependencies for test with pytest
 pip install -r tests/requirements-test.txt  
 
 Tested on python3.8  
-
