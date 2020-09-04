@@ -6,10 +6,13 @@ After it prints results on a file named like "fibonacci-number", where "number" 
 
 ## Start  
 
-pip install -m requirements.txt
+pip install -m requirements.txt  
 python3.8 fibonaccy.py  
 
 ## Development  
 
-Install dependencies for test with pytest
+Install dependencies for test with pytest  
 pip install -r tests/requirements-test.txt  
+
+Tested on python3.8  
+
