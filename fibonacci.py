@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""[summary]
-
-Returns:
-    [type]: [description]
+"""This script receives in input a positive integer and write a file with related fibonacci sequence
+   It also check if the file to write already exists. In this case it will backup the file
+   Eventual errors are written with logger.
+   
 """
 
 import os
@@ -17,13 +17,13 @@ logger = logging.getLogger('fibonacci:')
 
 # We use a generator
 def fibonacci(number):
-    """[summary]
+    """Generator of fibonacci 
 
     Args:
-        number ([type]): [description]
+        number (integer): It must to be a positive integer
 
     Returns:
-        [type]: [description]
+        generator: loop over generator to retrieve fibonacci values
     """
     
     # a is a small cache, we sum based on it
@@ -43,6 +43,13 @@ def fibonacci(number):
             a[0], a[1] = a[1], a[0]
 
 def check_and_rename(file_out):
+    """Rename a file if already exists 
+       It add date to the file with format %d-%m-%Y-%H-%M-%S
+       for example fibonacci_1 will be renamed to fibonacci_1_22_08_2020_10_12_32
+
+    Args:
+        file_out (string): The path of the file
+    """
     if os.path.isfile(file_out): 
         try:
             os.rename(file_out, file_out+"_"+datetime.datetime.now().strftime("%d-%m-%Y-%H-%M-%S"))
@@ -51,13 +58,10 @@ def check_and_rename(file_out):
         logger.info("Renaming already existent file "+file_out)
                 
 def to_file(file_out, g):
-    """[summary]
+    """This function permit to print value of the a generator to a file
 
     Args:
-        number ([type]): [description]
-
-    Returns:
-        [type]: [description]
+        file_out (string): Path of the file where we will store values 
     """
     check_and_rename(file_out)
         
@@ -72,7 +76,7 @@ def to_file(file_out, g):
         sys.exit(1)
 
 def main():
-    """[summary]
+    """This is the main function. Here we have also checks on value provided and related error messages
     """
     workdir=os.getcwd()+"/"
     basename="fibonacci"
